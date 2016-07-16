@@ -7,6 +7,7 @@ use Slim\Views\TwigExtension;
 use Noodlehaus\Config;
 
 use Website\User\User;
+use Website\Mail\Mailer;
 use Website\Helpers\Hash;
 use Website\Validation\Validator;
 
@@ -53,7 +54,20 @@ $app->container->singleton('validation', function() use($app) {
 $app->container->singleton('mail', function() use($app) {
 	$mailer = new PHPMailer;
 
-	
+	$mailer->Host = $app->config->get('mail.host');
+	$mailer->SMTPAuth = $app->config->get('mail.smtp_auth');
+	$mailer->SMTPSecure = $app->config->get('mail.smtp_secure');
+	$mailer->Port = $app->config->get('mail.port');
+	$mailer->Username = $app->config->get('mail.username');
+	$mailer->Password = $app->config->get('mail.password');
+
+	$mailer->setFrom($app->config->get('mail.username'));
+	$mailer->isHTML($app->config->get('mail.html'));
+
+	// Return mailer object
+	return new Mailer($app->view, $mailer);
+
+	var_dump($mailer);
 });
 
 $app->get('/', function() use ($app) {

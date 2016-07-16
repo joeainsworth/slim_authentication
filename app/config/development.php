@@ -26,8 +26,8 @@ return [
 		'smth_auth' => true,
 		'smtp_secure' => 'tls',
 		'host' => 'smtp.gmail.com',
-		'username' => '',
-		'password' => '',
+		'username' => 'joe.development.test@gmail.com',
+		'password' => 'd3v3l0pm3nt',
 		'port' => 587,
 		'html' => true
 	],
