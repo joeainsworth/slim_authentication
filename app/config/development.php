@@ -23,13 +23,9 @@ return [
 		'remember' => 'user_r'
 	],
 	'mail' => [
-		'smth_auth' => true,
-		'smtp_secure' => 'tls',
-		'host' => 'smtp.gmail.com',
-		'username' => 'joe.development.test@gmail.com',
-		'password' => 'd3v3l0pm3nt',
-		'port' => 587,
-		'html' => true
+		'secret' => 'key-0e6ad7de6d3a6572e37138076fe93f56',
+		'domain' => 'sandboxccbd346933974e83a94224a9095ffed3.mailgun.org',
+		'from'   => 'joe.ainsworth@me.com'
 	],
 	'twig' => [
 		'debug' => true

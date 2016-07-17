@@ -4,16 +4,20 @@ namespace Website\Mail;
 
 class Mailer {
 	protected $view;
-
+	protected $config;
 	protected $mailer;
 
-	public function __construct($view, $mailer) {
+	public function __construct($view, $config, $mailer) {
 		$this->view = $view;
+		$this->config = $config;
 		$this->mailer = $mailer;
 	}
 
 	public function send($template, $data, $callback) {
-		$message = new Message($this->mailer);
+		$builder = $this->mailer->MessageBuilder();
+
+		$message = new Message($builder);
+		$message->from($this->config->get('mail.from'));
 
 		$this->view->appendData($data);
 
@@ -21,6 +25,7 @@ class Mailer {
 
 		call_user_func($callback, $message);
 
-		$this->mailer->send();
+		$domain = $this->config->get('mail.domain');
+		$this->mailer->post("{$domain}/messages", $builder->getMessage());
 	}
 }

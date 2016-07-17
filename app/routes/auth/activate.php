@@ -10,7 +10,7 @@ $app->get('/activate', $guest(), function() use ($app) {
 	$hashedIdentifier = $app->hash->hash($identifier);
 
 	$user = $app->user->where('email', $email)
-					  ->where('active', true)
+					  ->where('active', false)
 					  ->first();
 
 	if (!$user || !$app->hash->hashCheck($user->active_hash, $hashedIdentifier)) {

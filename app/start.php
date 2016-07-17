@@ -4,6 +4,9 @@ use Slim\Slim;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 
+use Mailgun\Mailgun;
+use Http\Adapter\Guzzle6;
+
 use Noodlehaus\Config;
 use RandomLib\Factory as RandomLib;
 
@@ -60,22 +63,11 @@ $app->get('/', function() use ($app) {
 });
 
 $app->container->singleton('mail', function() use($app) {
-	$mailer = new PHPMailer;
-
-	$mailer->Host = $app->config->get('mail.host');
-	$mailer->SMTPAuth = $app->config->get('mail.smtp_auth');
-	$mailer->SMTPSecure = $app->config->get('mail.smtp_secure');
-	$mailer->Port = $app->config->get('mail.port');
-	$mailer->Username = $app->config->get('mail.username');
-	$mailer->Password = $app->config->get('mail.password');
-
-	$mailer->setFrom($app->config->get('mail.username'));
-	$mailer->isHTML($app->config->get('mail.html'));
+	$client = new \Http\Adapter\Guzzle6\Client();
+	$mailgun = new Mailgun($app->config->get('mail.secret'), $client);
 
 	// Return mailer object
-	return new Mailer($app->view, $mailer);
-
-	var_dump($mailer);
+	return new Mailer($app->view, $app->config, $mailgun);
 });
 
 $app->container->singleton('randomlib', function() {
