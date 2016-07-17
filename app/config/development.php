@@ -1,6 +1,6 @@
 <?php
 
-$db = parse_url(getenv("mysql://bebbea1d8baf7c:cd4159c1@us-cdbr-iron-east-04.cleardb.net/heroku_2fdf6c2b356d825?reconnect=true"));
+$db = parse_url(getenv("mysql://bcd7123eb562f7:7d4b6ab9@us-cdbr-iron-east-04.cleardb.net/heroku_4c86efe8ad5db53?reconnect=true"));
 
 return [
 	'app' => [
