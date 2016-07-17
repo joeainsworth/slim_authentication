@@ -13,7 +13,7 @@ return [
 	'db' => [
 		'driver' => 'mysql',
 		'host' => $db["host"],
-		'name' => substr($db["path"], 1);,
+		'name' => substr($db["path"], 1),
 		'username' => $db["user"],
 		'password' => $db["pass"],
 		'charset' => 'utf8',
