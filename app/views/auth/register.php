@@ -31,5 +31,7 @@
 		<div>
 			<input type="submit">
 		</div>
+
+		<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
 	</form>
 {% endblock %}

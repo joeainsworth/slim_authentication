@@ -17,6 +17,12 @@
 			{% if errors.first('password') %} {{ errors.first('password') }}{% endif %}
 		</div>
 
+		<div>
+			<input type="checkbox" name="remember" id="remember"> <label for="remember">Remember me</label>
+		</div>
+
 		<input type="submit" value="Log in">
+
+		<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
 	</form>
 {% endblock %}
