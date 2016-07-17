@@ -1,7 +1,5 @@
 <?php
 
-$db = parse_url(getenv("mysql://bcd7123eb562f7:7d4b6ab9@us-cdbr-iron-east-04.cleardb.net/heroku_4c86efe8ad5db53?reconnect=true"));
-
 return [
 	'app' => [
 		'url' => 'http://localhost',
@@ -12,10 +10,10 @@ return [
 	],
 	'db' => [
 		'driver' => 'mysql',
-		'host' => $db["host"],
-		'name' => substr($db["path"], 1),
-		'username' => $db["user"],
-		'password' => $db["pass"],
+		'host' => '127.0.0.1',
+		'name' => 'site',
+		'username' => 'root',
+		'password' => 'm1lkw00d',
 		'charset' => 'utf8',
 		'collation' => 'utf8_unicode_ci',
 		'prefix' => ''
